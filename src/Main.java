@@ -1,7 +1,9 @@
 import java.util.Scanner;
 
 public class Main {
-
+    //task: use scanner input to parse 5 ints from a string of >0 value. The digits of these ints are to be printed out in words.
+    // If the number is a palindrome print that it is and additionally, print out all prime factors and return the largest prime factor of the palindrome.
+    //
     public static Scanner intScanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -14,7 +16,7 @@ public class Main {
         System.out.println("input 5 integers");
         while (counter < 5) {
             counter++;
-            int testInt = intScanner.nextInt();
+            int testInt = Integer.parseInt(intScanner.nextLine());
             if (testInt < 1) {
                 System.out.println("invalid number");
             }
@@ -69,10 +71,52 @@ public class Main {
             System.out.println(" ");
 
             if (testInt == savedReversed) {
-                System.out.println("and " + testInt + " is a palindrome");
+                System.out.println("and " + testInt + " is a palindrome and its largest prime number is " + getLargestPrime(testInt));
             }
         }
         System.out.println("all 5 integers have been entered. Exiting the loop");
+    }
+
+    public static int getLargestPrime(int number) { // might want to break this up, because right now its just one giant
+                                                    //ugly mega-method
+        if (number <= 1) {
+            return -1;
+        }
+        int largestPrime = 0;
+        boolean isPrime = false;
+        int primeSum = 0;
+        int counter = 0;
+        for (int h = 2; h < number / 2; h++) {
+            if (number % h == 0) {
+                for (int j = 2; j < h / 2; j++) {
+                    if (h % j != 0) {
+                        isPrime = true;
+                        if (h > largestPrime) {
+                            largestPrime = h;
+                        }
+                    }
+                }
+                if (isPrime) {
+                    primeSum += h;
+                    counter++;
+                    System.out.println(h + " is a prime factor of " + number);
+                }
+            }
+        }
+        if (primeSum != 0) {
+            System.out.println("the sum of the prime factors of " + number + " = " + primeSum);
+            System.out.println("the average of the prime factors of " + number + " = " + Math.ceil(primeSum / counter));
+            return largestPrime;
+        } else {
+            System.out.println(number + " has no prime factors");
+            return -1;
+        }
+
+//        for (int i = 2; i < number; i++)                      RECURSION. Not sure how I'd print each prime and
+//            if (number % i == 0) {                            reassign the largestPrime like this.
+//                return getLargestPrime(number / i);
+//            }
+//        return number;
     }
 
 
