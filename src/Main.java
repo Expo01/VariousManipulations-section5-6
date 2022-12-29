@@ -1,15 +1,24 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
     //task: use scanner input to parse 5 ints from a string of >0 value. The digits of these ints are to be printed out in words.
     // If the number is a palindrome print that it is and additionally, print out all prime factors and return the largest prime factor of the palindrome.
-    //
+
+
+
     public static Scanner intScanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        System.out.println("enter your favorite color");
+        Color.stringTest();
+
+        InfiniteLoop.runBooleanLoop();
+
         numberToWords();
 
     }
+
 
     public static void numberToWords() {
         int counter = 0;
@@ -78,7 +87,7 @@ public class Main {
     }
 
     public static int getLargestPrime(int number) { // might want to break this up, because right now its just one giant
-                                                    //ugly mega-method
+        //ugly mega-method
         if (number <= 1) {
             return -1;
         }
@@ -111,12 +120,6 @@ public class Main {
             System.out.println(number + " has no prime factors");
             return -1;
         }
-
-//        for (int i = 2; i < number; i++)                      RECURSION. Not sure how I'd print each prime and
-//            if (number % i == 0) {                            reassign the largestPrime like this.
-//                return getLargestPrime(number / i);
-//            }
-//        return number;
     }
 
 
@@ -147,3 +150,9 @@ public class Main {
         return digitCount;
     }
 }
+
+//        for (int i = 2; i < number; i++)                      RECURSION. Not sure how I'd print each prime and
+//            if (number % i == 0) {                            reassign the largestPrime like this.
+//                return getLargestPrime(number / i);
+//            }
+//        return number;
